@@ -76,6 +76,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "progression.users",
     # Your stuff: custom apps go here
+    "progression.core",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
