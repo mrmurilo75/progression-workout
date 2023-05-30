@@ -1,4 +1,5 @@
 from django.db import models
+from model_utils.models import TimeStampedModel
 
 
 # We have a Plan
@@ -38,3 +39,19 @@ class TrainingDay(models.Model):
     exercises = models.ManyToManyField(ExerciseConfig)
 
 
+# We should be able to mark when we done each exercise
+#       One way to do this, would be,
+#           once we mark the first time as done,
+#           we make a copy of that given configuration
+#           (possibly just a json field with all the configs)
+
+
+class TrainingDayLog(models.Model):
+    day = models.DateField(auto_now_add=True)
+
+
+class ExerciseLog(ExerciseConfig):
+    train = models.ForeignKey(
+        TrainingDayLog,
+        on_delete=models.CASCADE,
+    )
