@@ -19,10 +19,10 @@ class ExerciseConfig(models.Model):
 
 class Workout(models.Model):
     name = models.CharField(max_length=127)
-    exercises = models.ManyToManyField(ExerciseConfig, related_name="+")
+    exercises = models.ManyToManyField(ExerciseConfig, related_name="%(class)ss")
     # FEAT Add orderable to dj-adm
 
 
 class Plan(models.Model):
     name = models.CharField(max_length=127)
-    workout_set = models.ManyToManyField(Workout)
+    workout_set = models.ManyToManyField(Workout, related_name="%(class)ss")
