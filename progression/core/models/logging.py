@@ -1,14 +1,20 @@
 from django.db import models
 
-from .workout import ExerciseConfig
+from .base import ExerciseConfig
+from .workout import Workout
 
 
 class WorkoutLog(models.Model):
-    day = models.DateField(auto_now_add=True)
-
-
-class ExerciseLog(ExerciseConfig):
+    datetime = models.DateTimeField(auto_now_add=True)
     workout = models.ForeignKey(
+        Workout,
+        on_delete=models.CASCADE,
+    )
+
+
+class ExerciseExecutionLog(ExerciseConfig):
+    datetime = models.DateTimeField(auto_now_add=True)
+    workout_log = models.ForeignKey(
         WorkoutLog,
         on_delete=models.CASCADE,
     )
